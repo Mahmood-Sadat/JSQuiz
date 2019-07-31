@@ -1,0 +1,118 @@
+﻿<html>
+    <head>
+    <title>JS Quiz</title>
+    <style>
+        .incorrect{
+            color: red;
+        }
+        .correct{
+            color: green;
+        }
+    </style>
+    </head>
+    <body>   
+        <ul>
+            <li>Question1</li><br>
+            <p id="q1"></p>
+            <li>Question2</li><br>
+            <p id="q2"></p>
+            <li>Question3</li><br>
+            <p id="q3"></p>
+            <li>Question4</li><br>
+            <p id="q4"></p>
+            <li>Question5</li><br>
+            <p id="q5"></p>
+        </ul> 
+        <button id="check">Check Answers</button>
+    <script>
+
+        
+            var Questions = 
+            [
+                {
+                    question: "What breaks when you say it?", 
+                    choices: ['It', 'Glass', 'Silence', 'A Mirror'],
+                    answer: 2
+                },
+                
+                {
+                    question: "What does not belong?",
+                    choices: ['Banana', 'Apple', 'Tomato', 'Corn'],
+                    answer: 3
+                },
+                {
+                    question: "The average person does what thirteen times a day?",
+                    choices: ['Laughs', 'Breathes', 'Blinks', 'Sneezes'],
+                    answer: 0
+                },
+                {
+                    question: "The first hockey puck was made of...",
+                    choices: ['Cow poop', 'Plastic', 'Metal', 'Ceramic'],
+                    answer: 0
+                },
+                {
+                    question: "Who's buried in King Tut's tomb?",
+                    choices: ['TutanKhamen', 'King Tut', 'Amenhotep', 'Cleopatra'],
+                    answer: 1
+                }
+            ];
+    
+            var dropdown = [];
+        
+            var list = document.getElementsByTagName("li");
+                for (var i = 0; i < Questions.length; i++){
+                
+                var questionz = Questions[i].question;
+                var optionz = Questions[i].choices;
+                var listQuestion = list[i];
+                var h4Element = document.createElement("h4");
+                var brElement = document.createElement("br");
+           
+            
+                h4Element.innerHTML = questionz;
+                listQuestion.appendChild(h4Element);
+                dropdown[i] = document.createElement("select");
+                var dropdownElement1 = document.createElement("option");
+                var dropdownElement2 = document.createElement("option");
+                var dropdownElement3 = document.createElement("option");
+                var dropdownElement4 = document.createElement("option");
+ 
+                // elements for the dropdown list 
+                dropdownElement1.textContent = optionz[0];
+                dropdownElement1.value = optionz[0];
+                dropdownElement2.textContent = optionz[1];
+                dropdownElement2.value = optionz[1];
+                dropdownElement3.textContent = optionz[2];
+                dropdownElement3.value = optionz[2];
+                dropdownElement4.textContent = optionz[3];
+                dropdownElement4.value = optionz[3];
+                
+                dropdown[i].appendChild(dropdownElement1);
+                dropdown[i].appendChild(dropdownElement2);
+                dropdown[i].appendChild(dropdownElement3);
+                dropdown[i].appendChild(dropdownElement4);
+                
+                h4Element.appendChild(dropdown[i]);
+            }
+        var btnEl = document.getElementById("check");
+        
+        btnEl.addEventListener("click", runThis);
+        
+        
+        function runThis() {
+            for (var i = 0; i < Questions.length; i++) {
+                var finalAnswer = Questions[i].answer;
+                var mark = document.getElementById("q" + (i + 1));
+                mark.className = "";
+                if (dropdown[i].selectedIndex == finalAnswer) {
+                    mark.classList.add("correct");
+                    mark.innerHTML = "Correct!";
+                } else  {
+                    mark.classList.add("incorrect");
+                    mark.innerHTML = "Incorrect!";
+                }
+            }
+        }
+        </script>
+    </body>
+</html>
